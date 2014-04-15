@@ -1,0 +1,11 @@
+<form action="/" method="POST">
+  <input name="task[name]" type="text" />
+  <input class="button" type="submit" value="New Task &gt;&gt;" />
+</form>
+
+<h2>My Tasks</h2>
+<ul class="tasks">
+  <% @tasks.each do |task|%>
+    <%= render "views/task.erb", { task: task } %>
+  <% end %>
+</ul>

@@ -1,0 +1,15 @@
+<li id="<%= task.id %>" class="task <%= (task.completed_at.nil? ? "" : "completed") %>">
+  <%= task.name %>
+  <form action="/task/<%= task.id %>" class="update" method="POST">
+    <input name="_method" type="hidden" value="PUT" />
+    <% if task.completed_at.nil? %>
+      <input title="Complete Task" type="submit" value="  " />
+    <% else %>
+      <input title="Uncomplete Task" type="submit" value="✓" />
+     <% end %>
+  </form>
+  <form action="/task/<%= task.id %>" class="delete" method="POST">
+    <input name="_method" type="hidden" value="DELETE" />
+    <input title="Delete Task" type="submit" value="&times;" />
+  </form>
+</li>
