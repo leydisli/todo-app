@@ -3,9 +3,9 @@
   <form action="/task/<%= task.id %>" class="update" method="POST">
     <input name="_method" type="hidden" value="PUT" />
     <% if task.completed_at.nil? %>
-      <input title="Complete Task" type="submit" value="  " />
+      <input name="task[completed]" title="Complete Task" type="submit" value="  " />
     <% else %>
-      <input title="Uncomplete Task" type="submit" value="✓" />
+      <input name="task[uncompleted]" title="Uncomplete Task" type="submit" value="✓" />
      <% end %>
   </form>
   <form action="/task/<%= task.id %>" class="delete" method="POST">

@@ -29,18 +29,19 @@ class TaskApp < Nancy::Base
 
   get '/task/:id' do
     @task = Task.get(params['id'])
-    render('views/layout.erb'){ render 'views/task.erb' }
+    render('views/layout.erb'){ render('views/task.erb', { task: @task }) }
   end
 
   post '/task' do
-    Task.create(name: params['name'])
+    Task.create(name: params['task']['name'])
     redirect '/tasks'
   end
 
   put '/task/:id' do
     task = Task.get(params['id'])
-    task.completed_at = params['completed'] ? Time.now : nil
-    task.name = params['name']
+    task.completed_at = params['task']['completed'] ? Time.now : nil
+    task.name = params['task']['name'] if params['task']['name']
+    task.save
     redirect '/tasks'
   end
 
